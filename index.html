@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sryx & hyeon mail</title>
+    <link rel="icon" href="logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="design.js"></script>
+    <style>
+        /* General page styling */
+body {
+    background-color: #4b87ff;
+    color: #3f3d56;
+    font-family: "Quicksand", sans-serif;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    transition: background 0.5s ease-in-out;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+
+        /* Navbar styling */
+        .navbar {
+            background: linear-gradient(45deg, #377e80, #0232a1);
+            padding: 1.5rem 1.5rem;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .navbar-brand {
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            font-size: 2rem;
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #00be9f;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffe6f1 !important;
+            font-weight: bold;
+            margin: 0 12px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #4d65ff !important;
+        }
+
+        /* Enhanced button in navbar */
+        .nav-item label.btn {
+            background: linear-gradient(45deg, #117f83, #0d6076);
+            color: white;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+
+        .nav-item label.btn:hover {
+            background: linear-gradient(45deg, #104862, #0474b0);
+            transform: scale(1.05);
+        }
+
+/* Hero section */
+.hero {
+    text-align: center;
+    padding: 150px 20px;
+    background: #23bfef;
+    border-radius: 25px;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+    animation: heroAnimation 4s ease-out infinite alternate;
+}
+
+@keyframes heroAnimation {
+    0% {
+        background-color: #9adaff;
+        transform: scale(1);
+    }
+
+    50% {
+        background-color: #5fc4fa;
+        transform: scale(1.05);
+    }
+
+    100% {
+        background-color: #2390de;
+        transform: scale(1);
+    }
+}
+
+.hero h1 {
+    font-size: 4.5rem;
+    font-weight: bold;
+    animation: rainbow-pink 6s ease infinite;
+    text-shadow: 0 0 15px rgba(105, 190, 255, 0.6);
+}
+
+.hero p {
+    font-size: 1.6rem;
+    margin-top: 20px;
+    letter-spacing: 1px;
+}
+
+/* Button styling */
+.btn-primary {
+    background: linear-gradient(45deg, #3680c1, #09628f);
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 14px 28px;
+    transition: all 0.4s ease-in-out;
+    box-shadow: 0 0 10px rgba(26, 170, 189, 0.6);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.4s ease-out;
+}
+
+.btn-primary:hover::before {
+    transform: scale(1);
+}
+
+.btn-primary:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(17, 199, 255, 0.8);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(2, 196, 255, 0.6);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(22, 205, 255, 0.8);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(1, 255, 234, 0.6);
+    }
+}
+
+.btn-primary {
+    animation: pulse 2s infinite;
+}
+
+/* Footer styling */
+.footer {
+    background: #3d9ee3;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-top: 2px solid #000000;
+    margin-top: 3rem;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer a {
+    color: #ffe6f1;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #166ca1;
+}
+
+/* Features Section */
+.features {
+    background: #fff;
+    padding: 60px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 3rem;
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.feature-card {
+    background: #ffebf1;
+    color: #506dff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: scale(1.05);
+}
+
+.feature-card h4 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    font-size: 1.2rem;
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Floating Heart -->
+    <div class="heart"></div>
+
+     <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">sryx & hyeon</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="#generate">Generate Email</a></li>
+                <li class="nav-item">
+                    <label for="bgUploader" class="btn">🧿Change Background</label>
+                    <input type="file" id="bgUploader" class="file-input" accept="image/*" style="display: none;">
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>sryx-hyeon mail</h1>
+        <p>Effortlessly generate temporary emails for enhanced privacy!</p>
+        <a href="#generate" class="btn btn-primary">Get Started</a>
+    </header>
+
+   
+<!-- Temporary Email Form -->
+<section id="generate" class="container mt-5">
+    <div class="card p-4 rounded-4 shadow-lg" style="background: rgba(255, 102, 178, 0.1); border: 2px solid #000000;">
+        <h4 class="text-center mb-4" style="color: #000000; font-weight: bold;">✨ Generate Temporary Email ✨</h4>
+
+        <!-- Generated Email Section -->
+        <div class="mb-3 position-relative">
+            <label for="generatedEmail" class="form-label" style="color: #000000; font-weight: bold;">Your Temporary Email</label>
+            <div class="input-group">
+                <input type="text" id="generatedEmail" class="form-control rounded-pill" readonly placeholder="Click 'Generate'" 
+                    style="border: 2px solid #000000; background: #ffe6f1; color: #000000; font-weight: bold;">
+                <button id="copyEmailBtn" class="btn rounded-pill" 
+                    style="background: #40eaf0; color: rgb(5, 71, 118); border: none;">📋 Copy</button>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mb-4">
+            <button id="generateEmailBtn" class="btn px-4 py-2 rounded-pill" 
+                style="background: linear-gradient(45deg, #23bca2, #037c80); color: white; font-size: 1.2rem; transition: 0.3s;">
+                🚀 Generate Email
+            </button>
+        </div>
+
+        <hr style="border-top: 2px dashed #000000;">
+
+        <!-- Inbox Section -->
+        <h4 class="text-center mb-3" style="color: #000000; font-weight: bold;">📩 Check Your Inbox</h4>
+        <div class="mb-3">
+            <label for="emailInput" class="form-label" style="color: hsla(0, 0%, 0%, 0.678); font-weight: bold;">Your Temporary Email</label>
+            <div class="input-group">
+                <input type="text" id="emailInput" class="form-control rounded-pill" readonly placeholder="Your generated email" 
+                    style="border: 2px solid #053793; background: #ffe6f1; color: #000000; font-weight: bold;">
+                <button id="checkBtn" class="btn rounded-pill" 
+                    style="background: #30cbff; color: white; border: none;">🔄 Check Emails</button>
+            </div>
+        </div>
+
+        <!-- Inbox Display -->
+        <div class="inbox-container mt-4 p-3 rounded-4" style="
+            max-height: 300px; overflow-y: auto; 
+            border: 2px solid #196676; background: rgba(255, 102, 178, 0.1);">
+            <h5 class="text-center" style="color: #000000;">📬 Inbox</h5>
+            <div id="emailContent" class="p-2 text-dark" style="font-weight: bold; color: #224eff;">No emails yet...</div>
+        </div>
+    </div>
+</section>
+    <!-- Features Section -->
+    <section id="features" class="features container">
+        <h2 class="text-center">Why Use sryunnie mail?</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <h4>Privacy</h4>
+                    <p>Keep your real email address private and secure with temporary emails.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <h4>Ease of Use</h4>
+                    <p>Quickly generate a temporary email with just one click!</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <h4>Free</h4>
+                    <p>Our service is completely free, with no hidden costs!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 By Pyeulmails. All Rights Reserved By Pyeul Productions Made By The Husband of Pyeul Lihm. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+</body>
+<script>
+const bgUploader = document.getElementById("bgUploader");
+
+bgUploader.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            document.body.style.backgroundImage = `url('${e.target.result}')`;
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundRepeat = "no-repeat";
+            document.body.style.backgroundAttachment = "fixed";
+        };
+
+        reader.onerror = () => {
+            alert("Failed to load the image. Please try again with a valid image.");
+        };
+
+        reader.readAsDataURL(file);
+    } else {
+        alert("No file selected. Please select an image.");
+    }
+});
+    </script>
+</html>
