@@ -13,11 +13,14 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="design.js"></script>
     <style>
-        /* General page styling */
+        /* Force all text to be monospaced and bold */
+    *, *::before, *::after {
+      font-family: "Fira Code", monospace !important;
+      font-weight: bold !important;
+    } /* General page styling */
 body {
     background-color: #4b87ff;
     color: #3f3d56;
-    font-family: "Quicksand", sans-serif;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
